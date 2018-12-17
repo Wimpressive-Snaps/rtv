@@ -1,0 +1,29 @@
+name: rtv
+base: core18
+version: 'git'
+summary: Browse Reddit from your terminal
+description: |
+  RTV provides a text-based interface to view and interact with reddit.
+  It's compatible with most terminal emulators on Linux.
+
+grade: stable
+confinement: strict
+
+parts:
+  rtv:
+    plugin: python
+    source: .
+    stage-packages:
+      - libgpm2
+      - urlscan
+      - w3m
+      - xsel
+
+apps:
+  rtv:
+    command: bin/rtv
+    environment:
+      LC_ALL: C.UTF-8
+    plugs:
+      - network
+      - x11
